@@ -1,0 +1,3 @@
+The main dependencies using in node.py are 'Flask' to create the web server and handle HTTP requests and 'requests' to send HTTP requests. The code is not dependent on any specific version of these dependencies. The code does not require anything beyond this.
+
+This is the code for a message queue, in the REST architectural style, implementing the Raft consensus algorithm for fault tolerance. To run, ensure the above dependencies are in place before running node.py to activate a node and passing as arguments (1) a json file with information for each node and (2) the index of the node to be activated
