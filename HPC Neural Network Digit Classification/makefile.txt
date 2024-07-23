@@ -1,0 +1,22 @@
+CC=gcc
+NVCC=nvcc
+CFLAGS=-O3
+LDFLAGS=-lm
+CUDA_ARCH=-arch=sm_70
+
+all: model_cpu_native model_cpu_blas model_gpu_native model_gpu_cublas
+
+model_cpu_native: model_cpu_native.c
+	$(CC) $(CFLAGS) -o model_cpu_native model_cpu_native.c $(LDFLAGS)
+
+model_cpu_blas: model_cpu_blas.c
+	$(CC) $(CFLAGS) -o model_cpu_blas model_cpu_blas.c $(LDFLAGS) -lcblas
+
+model_gpu_native: model_gpu_native.cu
+	$(NVCC) $(CFLAGS) $(CUDA_ARCH) -o model_gpu_native model_gpu_native.cu
+
+model_gpu_cublas: model_gpu_cublas.cu
+	$(NVCC) $(CFLAGS) $(CUDA_ARCH) -o model_gpu_cublas model_gpu_cublas.cu -lcublas
+
+clean:
+	rm -f model_cpu_native model_cpu_blas model_gpu_native model_gpu_cublas
